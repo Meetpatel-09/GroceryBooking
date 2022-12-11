@@ -112,5 +112,6 @@
     <string name="buy">Buy</string>
     <string name="no_item_in_cart">No Item In Cart</string>
     <string name="logo">logo</string>
+    <string name="trending_products">Trending Products</string>
 
 </resources>
