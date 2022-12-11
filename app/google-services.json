@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "434487404059",
+    "project_id": "grocery-booking-da290",
+    "storage_bucket": "grocery-booking-da290.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:434487404059:android:f06f9762ae76c95b517abe",
+        "android_client_info": {
+          "package_name": "com.meet.grocerybooking"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "434487404059-i1qhuat7bist4vbhg0s8q0fvfonn8s4j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBGwQWTiUEiSpf-mKoBjuxhOyPsJH7-LqY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "434487404059-i1qhuat7bist4vbhg0s8q0fvfonn8s4j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
