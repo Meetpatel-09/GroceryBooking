@@ -10,12 +10,12 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.meet.grocerybooking.R;
 import com.meet.grocerybooking.authentication.UserLogInActivity;
 
-public class HomeActivity extends AppCompatActivity {
+public class UserMainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+        setContentView(R.layout.activity_user_main);
 
         Button btnLogOut = findViewById(R.id.btn_logout);
 

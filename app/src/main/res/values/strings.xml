@@ -29,6 +29,7 @@
     <string name="user_registration">User Registration</string>
     <string name="user_login">User Login</string>
     <string name="admin_login">Admin Login</string>
+    <string name="login_message">A whole grocery market at your fingertips</string>
 
 
     <!-- Strings Used in Admin Home Page -->
@@ -110,5 +111,6 @@
     <string name="desc">desc</string>
     <string name="buy">Buy</string>
     <string name="no_item_in_cart">No Item In Cart</string>
+    <string name="logo">logo</string>
 
 </resources>

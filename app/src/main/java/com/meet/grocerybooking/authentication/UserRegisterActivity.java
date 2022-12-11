@@ -15,7 +15,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.meet.grocerybooking.R;
-import com.meet.grocerybooking.user.HomeActivity;
+import com.meet.grocerybooking.user.UserMainActivity;
 
 import java.util.HashMap;
 import java.util.Objects;
@@ -67,7 +67,7 @@ public class UserRegisterActivity extends AppCompatActivity {
     }
 
     private void openCProfile() {
-        startActivity(new Intent(this, HomeActivity.class));
+        startActivity(new Intent(this, UserMainActivity.class));
         finish();
     }
 

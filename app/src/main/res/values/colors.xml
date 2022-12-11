@@ -9,9 +9,10 @@
     <color name="white">#FFFFFFFF</color>
     <color name="light">#FFF5F5F5</color>
 
-    <color name="colorPrimary">#FF673AB7</color>
-    <color name="colorPrimaryDark">#FF311B92</color>
-    <color name="colorAccent">#FFBB86FC</color>
+    <color name="colorPrimary">#3D8361</color>
+    <color name="colorPrimaryDark">#1C6758</color>
+    <color name="colorAccent">#D6CDA4</color>
+    <color name="colorLight">#EEF2E6</color>
 
     <color name="text_color">#121212</color>
     <color name="deep_purple">#7c4dff</color>
