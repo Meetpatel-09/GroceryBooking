@@ -1,92 +1,60 @@
 package com.meet.grocerybooking.models;
 
-import java.util.ArrayList;
-
 public class ProductModel {
 
-    private int id;
-    private String title;
-    private String description;
-    private int price;
-    private double discountPercentage;
-    private double rating;
-    private int stock;
+    private String id;
+    private String name;
+    private String shopkeeperID;
+    private String price;
     private String brand;
     private String category;
-    private String thumbnail;
-    private ArrayList<String> images;
+    private String description;
+    private String image;
 
     public ProductModel() {
     }
 
-    public ProductModel(int id, String title, String description, int price, double discountPercentage, double rating, int stock, String brand, String category, String thumbnail, ArrayList<String> images) {
+    public ProductModel(String id, String name, String shopkeeperID, String price, String brand, String category, String description, String image) {
         this.id = id;
-        this.title = title;
-        this.description = description;
+        this.name = name;
+        this.shopkeeperID = shopkeeperID;
         this.price = price;
-        this.discountPercentage = discountPercentage;
-        this.rating = rating;
-        this.stock = stock;
         this.brand = brand;
         this.category = category;
-        this.thumbnail = thumbnail;
-        this.images = images;
+        this.description = description;
+        this.image = image;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
-    public String getTitle() {
-        return title;
+    public String getName() {
+        return name;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getDescription() {
-        return description;
+    public String getShopkeeperID() {
+        return shopkeeperID;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setShopkeeperID(String shopkeeperID) {
+        this.shopkeeperID = shopkeeperID;
     }
 
-    public int getPrice() {
+    public String getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(String price) {
         this.price = price;
-    }
-
-    public double getDiscountPercentage() {
-        return discountPercentage;
-    }
-
-    public void setDiscountPercentage(double discountPercentage) {
-        this.discountPercentage = discountPercentage;
-    }
-
-    public double getRating() {
-        return rating;
-    }
-
-    public void setRating(double rating) {
-        this.rating = rating;
-    }
-
-    public int getStock() {
-        return stock;
-    }
-
-    public void setStock(int stock) {
-        this.stock = stock;
     }
 
     public String getBrand() {
@@ -105,19 +73,19 @@ public class ProductModel {
         this.category = category;
     }
 
-    public String getThumbnail() {
-        return thumbnail;
+    public String getDescription() {
+        return description;
     }
 
-    public void setThumbnail(String thumbnail) {
-        this.thumbnail = thumbnail;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public ArrayList<String> getImages() {
-        return images;
+    public String getImage() {
+        return image;
     }
 
-    public void setImages(ArrayList<String> images) {
-        this.images = images;
+    public void setImage(String image) {
+        this.image = image;
     }
 }

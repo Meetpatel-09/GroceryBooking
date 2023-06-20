@@ -37,13 +37,13 @@ public class AdminMainActivity extends AppCompatActivity implements View.OnClick
         MaterialCardView addCategory = findViewById(R.id.add_category);
         MaterialCardView removeCategory = findViewById(R.id.remove_category);
         MaterialCardView manageShopkeeper = findViewById(R.id.manage_shopkeeper);
-        MaterialCardView manageProducts = findViewById(R.id.manage_products);
+//        MaterialCardView manageProducts = findViewById(R.id.manage_products);
         Button logOut = findViewById(R.id.btn_logout);
 
         addCategory.setOnClickListener(this);
         removeCategory.setOnClickListener(this);
         manageShopkeeper.setOnClickListener(this);
-        manageProducts.setOnClickListener(this);
+//        manageProducts.setOnClickListener(this);
         logOut.setOnClickListener(this);
     }
 
@@ -63,10 +63,10 @@ public class AdminMainActivity extends AppCompatActivity implements View.OnClick
                 intent = new Intent(AdminMainActivity.this, ManageShopkeeperActivity.class);
                 startActivity(intent);
                 break;
-            case R.id.manage_products:
-                intent = new Intent(AdminMainActivity.this, ManageProductsActivity.class);
-                startActivity(intent);
-                break;
+//            case R.id.manage_products:
+//                intent = new Intent(AdminMainActivity.this, ManageProductsActivity.class);
+//                startActivity(intent);
+//                break;
             case R.id.btn_logout:
                 editor.putString("isLogin", "false");
                 editor.commit();

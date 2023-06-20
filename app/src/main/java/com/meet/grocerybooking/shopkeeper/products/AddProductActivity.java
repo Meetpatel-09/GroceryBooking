@@ -171,7 +171,7 @@ public class AddProductActivity extends AppCompatActivity {
 
         dbRef.child(uniqueKey).setValue(map).addOnSuccessListener(unused -> {
             pd.dismiss();
-            Toast.makeText(AddProductActivity.this, "Book Uploaded Successfully", Toast.LENGTH_SHORT).show();
+            Toast.makeText(AddProductActivity.this, "Product Uploaded Successfully", Toast.LENGTH_SHORT).show();
             startActivity(new Intent(AddProductActivity.this, ShopkeeperMainActivity.class));
             finish();
         }).addOnFailureListener(e -> {

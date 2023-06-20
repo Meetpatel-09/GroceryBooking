@@ -30,7 +30,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
     @NonNull
     @Override
     public ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.card_item, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.product_item, parent, false);
         return new ProductViewHolder(view);
     }
 
@@ -39,11 +39,13 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
 
         ProductModel model = list.get(position);
 
-        holder.product_title.setText(model.getTitle());
+        holder.product_title.setText(model.getName());
+        holder.product_desc.setText(model.getBrand());
+        holder.product_price.setText(model.getPrice());
 
         try {
-            if (model.getThumbnail() != null)
-                Picasso.get().load(model.getThumbnail()).placeholder(R.drawable.loading_shape).into(holder.product_thumbnail);
+            if (model.getImage() != null)
+                Picasso.get().load(model.getImage()).placeholder(R.drawable.loading_shape).into(holder.product_thumbnail);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -58,12 +60,16 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
 
         public ImageView product_thumbnail;
         public TextView product_title;
+        public TextView product_desc;
+        public TextView product_price;
 
         public ProductViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            product_thumbnail = itemView.findViewById(R.id.product_image);
-            product_title = itemView.findViewById(R.id.product_title);
+            product_thumbnail = itemView.findViewById(R.id.row_thumbnail);
+            product_title = itemView.findViewById(R.id.row_title);
+            product_desc = itemView.findViewById(R.id.row_desc);
+            product_price = itemView.findViewById(R.id.row_price);
 
         }
     }
