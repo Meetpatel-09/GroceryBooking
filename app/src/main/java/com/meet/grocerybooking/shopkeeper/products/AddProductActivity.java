@@ -1,17 +1,20 @@
 package com.meet.grocerybooking.shopkeeper.products;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.google.android.material.card.MaterialCardView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -21,14 +24,19 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.StorageTask;
 import com.google.firebase.storage.UploadTask;
 import com.meet.grocerybooking.R;
+import com.meet.grocerybooking.shopkeeper.ShopkeeperMainActivity;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Objects;
+import java.util.UUID;
 
 public class AddProductActivity extends AppCompatActivity {
 
@@ -85,11 +93,93 @@ public class AddProductActivity extends AppCompatActivity {
         Button uploadProduct = findViewById(R.id.upload_product);
         Button cancel = findViewById(R.id.cancel_upload);
 
-        addImage.setOnClickListener(v -> CropImage.activity().setCropShape(CropImageView.CropShape.RECTANGLE).start(UploadActivity.this));
+        addImage.setOnClickListener(v -> CropImage.activity().setCropShape(CropImageView.CropShape.RECTANGLE).start(AddProductActivity.this));
 
-//        uploadProduct.setOnClickListener(v -> validateData());
+        uploadProduct.setOnClickListener(v -> validateData());
 
         cancel.setOnClickListener(v -> startActivity(new Intent(AddProductActivity.this, AddProductActivity.class)));
+    }
+
+    private void validateData() {
+
+        sProductCategory = category.getSelectedItem().toString();
+
+        sProductName = productName.getText().toString();
+        sProductBrand = productBrand.getText().toString();
+        sProductDescription = productDescription.getText().toString();
+        sProductPrice = productPrice.getText().toString();
+
+        if (sProductName.isEmpty()) {
+            productName.setError("Required");
+            productName.requestFocus();
+        } else if (sProductBrand.isEmpty()) {
+            productBrand.setError("Required");
+            productBrand.requestFocus();
+        } else if (sProductDescription.isEmpty()) {
+            productDescription.setError("Required");
+            productDescription.requestFocus();
+        } else if (sProductPrice.isEmpty()) {
+            productPrice.setError("Required");
+            productPrice.requestFocus();
+        } else if (sProductCategory.equals("Select Category")) {
+            productPrice.setError("Select Category");
+            category.requestFocus();
+        } else if (mImageUri == null) {
+            productPrice.setError("Select Image");
+            productPrice.requestFocus();
+        } else {
+            uploadProductImage();
+        }
+    }
+
+    private void uploadProductImage() {
+        pd.setMessage("Uploading...");
+        pd.show();
+        String uniqueString = UUID.randomUUID().toString();
+
+        final StorageReference referenceForProfile = storage.getReference().child("products").child(uniqueString+".jpeg");
+
+        uploadTask = referenceForProfile.putFile(mImageUri);
+        uploadTask.addOnCompleteListener(AddProductActivity.this, task -> {
+            if (task.isSuccessful()) {
+                uploadTask.addOnSuccessListener(taskSnapshot -> referenceForProfile.getDownloadUrl().addOnSuccessListener(uri -> {
+                    downloadUrl = String.valueOf(uri);
+                    uploadData();
+                }));
+            } else {
+                pd.dismiss();
+                Toast.makeText(AddProductActivity.this, "Something went wrong!!", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void uploadData() {
+        DatabaseReference dbRef = reference.child("products");
+        final String uniqueKey = dbRef.push().getKey();
+
+        HashMap<String, String> map = new HashMap<>();
+        map.put("id", uniqueKey);
+        map.put("shopkeeperID", Objects.requireNonNull(auth.getCurrentUser()).getUid());
+        map.put("name", sProductName);
+        map.put("brand", sProductBrand);
+        map.put("description", sProductDescription);
+        map.put("category", sProductCategory);
+        map.put("price", sProductPrice);
+        map.put("image", downloadUrl);
+
+        assert uniqueKey != null;
+
+        dbRef.child(uniqueKey).setValue(map).addOnSuccessListener(unused -> {
+            pd.dismiss();
+            Toast.makeText(AddProductActivity.this, "Book Uploaded Successfully", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(AddProductActivity.this, ShopkeeperMainActivity.class));
+            finish();
+        }).addOnFailureListener(e -> {
+            pd.dismiss();
+            Toast.makeText(AddProductActivity.this, "Something went wrong!!", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(AddProductActivity.this, ShopkeeperMainActivity.class));
+            finish();
+        });
     }
 
     private void setSpinner() {
@@ -104,7 +194,6 @@ public class AddProductActivity extends AppCompatActivity {
 
                 final ArrayAdapter<String> adapter = new ArrayAdapter<>(AddProductActivity.this, android.R.layout.simple_list_item_1, android.R.id.text1, catItems);
                 category.setAdapter(adapter);
-
             }
 
             @Override
@@ -112,5 +201,23 @@ public class AddProductActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
+            CropImage.ActivityResult result = CropImage.getActivityResult(data);
+
+            assert result != null;
+
+            mImageUri = result.getUri();
+            productImage.setImageURI(mImageUri);
+            productImage.setVisibility(View.VISIBLE);
+
+        } else {
+            Toast.makeText(this, "Something went wrong.", Toast.LENGTH_SHORT).show();
+        }
     }
 }
