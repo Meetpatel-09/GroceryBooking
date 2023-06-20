@@ -1,21 +1,19 @@
 <resources>
     <string name="app_name">Grocery Booking</string>
 
-    <!-- Strings Used in Multiple Pages -->
     <string name="log_out">Log Out</string>
-    <!--    <string name="voter_id">Voter ID</string>-->
     <string name="mobile_number">Mobile Number</string>
 
     <!-- Strings Used in Start Page -->
     <string name="welcome">Welcome</string>
-    <string name="about_application"> Second-hand  book  shopping  has  been  a  current  trend  in  today’s  stream.  The  process  of  selling    and    buying the second-hand    book    is    somehow  lead  to  time  and  energy  wastage.  The  purpose  of  this  paper  is  to  give  solution  through  Online    Second-hand    Bookshop    System.    The    customer   segment   includes   buyer,   seller.
-    </string>
 
     <!-- Strings Used in Authentication -->
-    <string name="second_hand_books_selling">Catalog App</string>
-    <string name="books_quote">Good friends, good books, and a sleepy conscience: this is the ideal life.</string>
     <string name="register">Register</string>
+    <string name="shopkeeper_register">Shopkeeper Register</string>
     <string name="login">Log In</string>
+    <string name="user_login">User Login</string>
+    <string name="admin_login">Admin Login</string>
+    <string name="shopkeeper_login">Shopkeeper Login</string>
     <string name="full_name">Full Name</string>
     <string name="email_id">Email ID</string>
     <string name="password">Password</string>
@@ -27,10 +25,7 @@
     <string name="submit">Submit</string>
     <string name="profile_picture">Add Profile Picture</string>
     <string name="user_registration">User Registration</string>
-    <string name="user_login">User Login</string>
-    <string name="admin_login">Admin Login</string>
     <string name="login_message">A whole grocery market at your fingertips</string>
-
 
     <!-- Strings Used in Admin Home Page -->
     <string name="manage_users">Manage Users</string>
