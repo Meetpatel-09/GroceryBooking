@@ -13,15 +13,15 @@
         android:title="@string/category"
         />
 
-    <item
-        android:id="@+id/navigation_upload"
-        android:icon="@drawable/icon_category"
-        android:title="@string/upload"
-        />
+<!--    <item-->
+<!--        android:id="@+id/navigation_upload"-->
+<!--        android:icon="@drawable/icon_category"-->
+<!--        android:title="@string/upload"-->
+<!--        />-->
 
     <item
         android:id="@+id/navigation_chat"
-        android:icon="@drawable/icon_category"
+        android:icon="@drawable/icon_chat"
         android:title="@string/chat"
         />
 
